@@ -599,129 +599,108 @@
   }
 </style>
 
-<style>
-  #lock-screen {
+<style id="pw-style">
+  body { margin: 0; }
+  #pw-overlay {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: #0a0a0a;
-    z-index: 9999;
+    z-index: 99999;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'DM Sans', sans-serif;
   }
-  #lock-screen.hidden { display: none; }
-  .lock-box {
-    width: 100%;
-    max-width: 360px;
+  .pw-box {
+    width: 340px;
     padding: 48px 36px;
-    border: 1px solid #1e1e1e;
+    border: 1px solid #222;
     border-radius: 16px;
-    background: #111111;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-  .lock-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    color: #6b6b6b;
-    letter-spacing: 0.02em;
-  }
-  .lock-brand span { color: #3ddc84; }
-  .lock-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 400;
-    color: #e8e8e4;
+    background: #111;
     text-align: center;
+  }
+  .pw-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  .pw-brand em { color: #3ddc84; font-style: normal; }
+  .pw-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: #e8e8e4;
+    margin-bottom: 8px;
     line-height: 1.2;
   }
-  .lock-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    color: #6b6b6b;
-    text-align: center;
+  .pw-sub {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 28px;
   }
-  .lock-input {
+  .pw-input {
     width: 100%;
+    box-sizing: border-box;
     background: #0a0a0a;
-    border: 1px solid #1e1e1e;
+    border: 1px solid #222;
     border-radius: 8px;
-    padding: 14px 16px;
-    font-family: 'DM Sans', sans-serif;
+    padding: 13px 16px;
     font-size: 15px;
     color: #e8e8e4;
-    letter-spacing: 0.1em;
-    outline: none;
-    transition: border-color 0.2s;
     text-align: center;
+    letter-spacing: 0.12em;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
   }
-  .lock-input:focus { border-color: #3ddc84; }
-  .lock-input.shake { animation: shake 0.3s ease; border-color: #e05252; }
-  .lock-btn {
+  .pw-input:focus { border-color: #3ddc84; }
+  .pw-btn {
     width: 100%;
     background: #3ddc84;
     color: #0a0a0a;
     border: none;
     border-radius: 8px;
-    padding: 14px;
-    font-family: 'DM Sans', sans-serif;
+    padding: 13px;
     font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     cursor: pointer;
-    transition: opacity 0.2s;
+    margin-bottom: 12px;
   }
-  .lock-btn:hover { opacity: 0.85; }
-  .lock-error {
-    font-family: 'DM Sans', sans-serif;
+  .pw-btn:hover { background: #35c976; }
+  .pw-err {
     font-size: 12px;
     color: #e05252;
     min-height: 16px;
   }
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    75% { transform: translateX(8px); }
-  }
 </style>
-<script>
-  function checkPassword() {
-    var val = document.getElementById('pwd-input').value;
-    var err = document.getElementById('pwd-error');
-    var inp = document.getElementById('pwd-input');
-    if (val === 'vanessa2026') {
-      document.getElementById('lock-screen').classList.add('hidden');
-      document.getElementById('main-content').style.display = 'block';
-    } else {
-      inp.classList.add('shake');
-      err.textContent = 'Senha incorreta. Tente novamente.';
-      setTimeout(function(){ inp.classList.remove('shake'); }, 350);
-      inp.value = '';
-      inp.focus();
-    }
-  }
-  window.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('main-content').style.display = 'none';
-    document.getElementById('pwd-input').addEventListener('keydown', function(e){
-      if (e.key === 'Enter') checkPassword();
-    });
-  });
-<\/script>
 </head>
 <body>
-<div id="lock-screen">
-  <div class="lock-box">
-    <p class="lock-brand"><span>Grão</span> | Grupo Primo</p>
-    <p class="lock-title">Plano de Ação<br>Vanessa Rosa</p>
-    <p class="lock-sub">Documento confidencial.<br>Insira a senha para acessar.</p>
-    <input id="pwd-input" class="lock-input" type="password" placeholder="••••••••••••" autocomplete="off" />
-    <button class="lock-btn" onclick="checkPassword()">Acessar</button>
-    <p id="pwd-error" class="lock-error"></p>
+<div id="pw-overlay">
+  <div class="pw-box">
+    <p class="pw-brand"><em>Grão</em> | Grupo Primo</p>
+    <p class="pw-title">Plano de Ação<br>Vanessa Rosa</p>
+    <p class="pw-sub">Documento confidencial. Insira a senha para acessar.</p>
+    <input id="pw-in" class="pw-input" type="password" placeholder="••••••••••" autocomplete="off">
+    <button class="pw-btn" onclick="pwCheck()">Acessar</button>
+    <p id="pw-err" class="pw-err"></p>
   </div>
 </div>
-<div id="main-content">
+<script>
+function pwCheck() {
+  var v = document.getElementById('pw-in').value;
+  if (v === 'vanessa2026') {
+    document.getElementById('pw-overlay').style.display = 'none';
+  } else {
+    document.getElementById('pw-err').textContent = 'Senha incorreta. Tente novamente.';
+    document.getElementById('pw-in').value = '';
+    document.getElementById('pw-in').focus();
+  }
+}
+document.getElementById('pw-in').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') pwCheck();
+});
+</script>
 
 
 <!-- HERO -->
@@ -1459,6 +1438,5 @@
   </div>
 </footer>
 
-</div>
 </body>
 </html>
