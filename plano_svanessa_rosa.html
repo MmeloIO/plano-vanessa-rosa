@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Ação — Vanessa Rosa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: #1e1e1e;
+    --green: #3ddc84;
+    --green-dim: #1a4d32;
+    --green-glow: rgba(61,220,132,0.08);
+    --amber: #e8b455;
+    --amber-dim: #3d2e0e;
+    --red: #e05252;
+    --red-dim: #3d1515;
+    --text: #e8e8e4;
+    --text-muted: #6b6b6b;
+    --text-dim: #9a9a94;
+    --accent: #3ddc84;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 40px 60px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,220,132,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--green);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 20px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-sub span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-sub span::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--green);
+    display: inline-block;
+  }
+
+  /* ── WRAPPER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 60px 40px;
+    border-bottom: 1px solid var(--border);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── PATRIMÔNIO CARDS ── */
+  .patrimony-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .pat-card {
+    background: var(--surface);
+    padding: 24px 20px;
+    position: relative;
+  }
+  .pat-card.highlight { background: var(--green-glow); }
+  .pat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .pat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+  }
+  .pat-value.green { color: var(--green); }
+  .pat-value.amber { color: var(--amber); }
+  .pat-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* ── ORÇAMENTO BAR ── */
+  .budget-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+  }
+  .budget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .budget-name { font-size: 14px; color: var(--text-dim); }
+  .budget-val { 
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+  .budget-pct { font-size: 12px; color: var(--text-muted); margin-left: 8px; }
+  .bar-track {
+    width: 100%;
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .bar-green { background: var(--green); }
+  .bar-amber { background: var(--amber); }
+  .bar-red { background: var(--red); }
+  .bar-blue { background: #5b8dee; }
+
+  .budget-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .budget-row:last-child { border-bottom: none; }
+  .budget-row-name { font-size: 13px; color: var(--text-dim); }
+  .budget-row-val { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* ── CARTEIRA ALLOCATION ── */
+  .alloc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  @media(max-width:600px) { .alloc-grid { grid-template-columns: 1fr; } }
+  .alloc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .alloc-card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 3px; height: 100%;
+    border-radius: 2px 0 0 2px;
+  }
+  .alloc-card.ok::after { background: var(--green); }
+  .alloc-card.warn::after { background: var(--amber); }
+  .alloc-card.bad::after { background: var(--red); }
+  .alloc-name { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .alloc-pct { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; line-height: 1; }
+  .alloc-pct.ok { color: var(--green); }
+  .alloc-pct.warn { color: var(--amber); }
+  .alloc-pct.bad { color: var(--red); }
+  .alloc-val { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+  .alloc-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; line-height: 1.4; }
+
+  /* ── COE CARDS ── */
+  .coe-list { display: flex; flex-direction: column; gap: 12px; }
+  .coe-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .coe-header {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+  .coe-status {
+    width: 6px;
+    flex-shrink: 0;
+  }
+  .coe-status.ok { background: var(--green); }
+  .coe-status.warn { background: var(--amber); }
+  .coe-status.bad { background: var(--red); }
+  .coe-body { padding: 20px; flex: 1; }
+  .coe-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .coe-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .coe-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-ok { background: rgba(61,220,132,0.12); color: var(--green); }
+  .badge-warn { background: rgba(232,180,85,0.12); color: var(--amber); }
+  .badge-bad { background: rgba(224,82,82,0.12); color: var(--red); }
+  .coe-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .coe-meta-item { font-size: 12px; }
+  .coe-meta-label { color: var(--text-muted); display: block; margin-bottom: 2px; }
+  .coe-meta-val { color: var(--text); font-weight: 500; }
+  .coe-meta-val.green { color: var(--green); }
+  .coe-meta-val.amber { color: var(--amber); }
+  .coe-meta-val.red { color: var(--red); }
+  .coe-alert {
+    background: rgba(224,82,82,0.06);
+    border: 1px solid rgba(224,82,82,0.15);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #e07070;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+  .coe-alert.amber-alert {
+    background: rgba(232,180,85,0.06);
+    border-color: rgba(232,180,85,0.15);
+    color: #c9a060;
+  }
+  .coe-veredicto {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+  .veredicto-ok { background: rgba(61,220,132,0.06); color: var(--green); }
+  .veredicto-warn { background: rgba(232,180,85,0.06); color: var(--amber); }
+  .veredicto-bad { background: rgba(224,82,82,0.06); color: var(--red); }
+
+  /* ── RENDA FIXA TABLE ── */
+  .rf-table { width: 100%; border-collapse: collapse; }
+  .rf-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 16px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .rf-table td {
+    padding: 14px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .rf-table tr:last-child td { border-bottom: none; }
+  .rf-table tr:hover td { background: var(--surface2); }
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .tag-ok { background: rgba(61,220,132,0.1); color: var(--green); }
+  .tag-warn { background: rgba(232,180,85,0.1); color: var(--amber); }
+  .tag-bad { background: rgba(224,82,82,0.1); color: var(--red); }
+
+  /* ── PLANO CFP ── */
+  .cfp-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .pillar-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .pillar-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .pillar-title { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 8px; }
+  .pillar-desc { font-size: 13px; color: var(--text-dim); line-height: 1.55; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .checklist li strong { color: var(--text); font-weight: 500; }
+
+  /* ── OBJETIVOS TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 6px;
+    width: 1px;
+    height: calc(100% - 6px);
+    background: linear-gradient(to bottom, var(--green), transparent);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-dot {
+    position: absolute;
+    left: -28px; top: 4px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    background: var(--bg);
+  }
+  .tl-dot.filled { background: var(--green); }
+  .tl-date { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+  .tl-title { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .tl-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--green); }
+  .tl-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── RESERVA ALERTA ── */
+  .reserva-alert {
+    background: rgba(224,82,82,0.05);
+    border: 1px solid rgba(224,82,82,0.2);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  .reserva-icon {
+    font-size: 32px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .reserva-content h3 { font-size: 15px; font-weight: 600; color: #e07070; margin-bottom: 8px; }
+  .reserva-content p { font-size: 13px; color: var(--text-dim); line-height: 1.55; }
+  .reserva-nums {
+    display: flex;
+    gap: 20px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .reserva-num-item { font-size: 12px; }
+  .reserva-num-label { color: var(--text-muted); display: block; }
+  .reserva-num-val { font-family: 'Cormorant Garamond', serif; font-size: 22px; }
+  .reserva-num-val.red { color: var(--red); }
+  .reserva-num-val.green { color: var(--green); }
+
+  /* ── SEGURO ── */
+  .seguro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media(max-width:600px) { .seguro-grid { grid-template-columns: 1fr; } }
+  .seguro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .seguro-card.ok { border-color: rgba(61,220,132,0.2); }
+  .seguro-card.bad { border-color: rgba(224,82,82,0.2); }
+  .seguro-type { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .seguro-status { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .seguro-status.ok { color: var(--green); }
+  .seguro-status.bad { color: var(--red); }
+  .seguro-note { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 48px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 20px;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  .footer-brand span { color: var(--green); }
+  .footer-info { font-size: 12px; color: var(--text-muted); text-align: right; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--green-glow);
+    border: 1px solid rgba(61,220,132,0.15);
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 13px;
+    color: #7dd9a8;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .callout strong { color: var(--green); }
+
+  /* ── INDEPENDENCE HIGHLIGHT ── */
+  .independence-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .independence-box::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(61,220,132,0.05) 0%, transparent 70%);
+  }
+  .ind-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+  .ind-age { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--green); line-height: 1; }
+  .ind-anos { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+  .ind-renda { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--text); }
+  .ind-renda-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; margin-bottom: 20px; }
+  .ind-patrimonio { font-size: 13px; color: var(--text-dim); }
+  .ind-patrimonio strong { color: var(--text); font-size: 18px; }
+
+  /* ── PROJETOS ── */
+  .projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .projeto-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .projeto-emoji { font-size: 24px; margin-bottom: 10px; display: block; }
+  .projeto-nome { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .projeto-data { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .projeto-valor { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--green); }
+
+  /* fade in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section { animation: fadeUp 0.5s ease both; }
+
+  /* MOBILE */
+  @media(max-width: 640px) {
+    .hero, .section { padding-left: 20px; padding-right: 20px; }
+    footer { padding: 32px 20px; }
+    .hero h1 { font-size: 38px; }
+    .rf-table { display: block; overflow-x: auto; }
+    .coe-meta { gap: 12px; }
+    .footer-info { text-align: left; }
+  }
+</style>
+
+<style>
+  #lock-screen {
+    position: fixed;
+    inset: 0;
+    background: #0a0a0a;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #lock-screen.hidden { display: none; }
+  .lock-box {
+    width: 100%;
+    max-width: 360px;
+    padding: 48px 36px;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    background: #111111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .lock-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: #6b6b6b;
+    letter-spacing: 0.02em;
+  }
+  .lock-brand span { color: #3ddc84; }
+  .lock-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #e8e8e4;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .lock-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #6b6b6b;
+    text-align: center;
+  }
+  .lock-input {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #e8e8e4;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  .lock-input:focus { border-color: #3ddc84; }
+  .lock-input.shake { animation: shake 0.3s ease; border-color: #e05252; }
+  .lock-btn {
+    width: 100%;
+    background: #3ddc84;
+    color: #0a0a0a;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .lock-btn:hover { opacity: 0.85; }
+  .lock-error {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #e05252;
+    min-height: 16px;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+</style>
+<script>
+  function checkPassword() {
+    var val = document.getElementById('pwd-input').value;
+    var err = document.getElementById('pwd-error');
+    var inp = document.getElementById('pwd-input');
+    if (val === 'vanessa2026') {
+      document.getElementById('lock-screen').classList.add('hidden');
+      document.getElementById('main-content').style.display = 'block';
+    } else {
+      inp.classList.add('shake');
+      err.textContent = 'Senha incorreta. Tente novamente.';
+      setTimeout(function(){ inp.classList.remove('shake'); }, 350);
+      inp.value = '';
+      inp.focus();
+    }
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('pwd-input').addEventListener('keydown', function(e){
+      if (e.key === 'Enter') checkPassword();
+    });
+  });
+<\/script>
+</head>
+<body>
+<div id="lock-screen">
+  <div class="lock-box">
+    <p class="lock-brand"><span>Grão</span> | Grupo Primo</p>
+    <p class="lock-title">Plano de Ação<br>Vanessa Rosa</p>
+    <p class="lock-sub">Documento confidencial.<br>Insira a senha para acessar.</p>
+    <input id="pwd-input" class="lock-input" type="password" placeholder="••••••••••••" autocomplete="off" />
+    <button class="lock-btn" onclick="checkPassword()">Acessar</button>
+    <p id="pwd-error" class="lock-error"></p>
+  </div>
+</div>
+<div id="main-content">
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container" style="max-width:960px;">
+    <p class="hero-label">Grão | Grupo Primo — Planejamento Financeiro Pessoal</p>
+    <h1>Plano de Ação<br><em>Vanessa Rosa</em></h1>
+    <div class="hero-sub">
+      <span>3ª Reunião — Análise de Carteira</span>
+      <span>Planejador: Matheus Melo</span>
+      <span>Maio 2026</span>
+    </div>
+  </div>
+</header>
+
+<!-- 1. INDEPENDÊNCIA FINANCEIRA -->
+<div class="section">
+  <p class="section-label">Objetivo Central</p>
+  <h2 class="section-title">Independência Financeira</h2>
+
+  <div class="independence-box">
+    <p class="ind-label">Meta de Independência</p>
+    <p class="ind-age">50</p>
+    <p class="ind-anos">anos de idade — faltam 17 anos</p>
+    <p class="ind-renda">R$ 10.000 / mês</p>
+    <p class="ind-renda-label">Renda passiva desejada (valor de hoje, corrigido pela inflação)</p>
+    <div class="divider"></div>
+    <p class="ind-patrimonio">Patrimônio necessário estimado: <strong>R$ 2.600.000</strong></p>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">Cálculo conservador — taxa real de 4% a.a. | Fase de usufruto: 3,5% a.a.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot filled"></div>
+      <p class="tl-date">Dez / 2026</p>
+      <p class="tl-title">Meta Intermediária</p>
+      <p class="tl-val">R$ 420.000 investidos</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-date">Jul / 2027</p>
+      <p class="tl-title">Meta Intermediária</p>
+      <p class="tl-val">R$ 450.000 investidos</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <p class="tl-date">2043</p>
+      <p class="tl-title">Liberdade Financeira</p>
+      <p class="tl-val">R$ 2.600.000+</p>
+      <p class="tl-desc">Aportando R$ 7.000/mês com retorno conservador de 4% a.a. real</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:32px;">
+    ✓ Com o seu potencial de aporte atual de <strong>R$ 5.300/mês</strong>, a simulação conservadora aponta para patrimônio de ~R$ 1,9 milhão aos 50 anos partindo do zero — considerando o patrimônio que você já tem hoje, o número melhora significativamente.
+  </div>
+</div>
+
+<!-- 2. PANORAMA FINANCEIRO -->
+<div class="section">
+  <p class="section-label">Panorama Atual</p>
+  <h2 class="section-title">Sua Situação Hoje</h2>
+
+  <div class="patrimony-grid">
+    <div class="pat-card">
+      <p class="pat-label">Renda Líquida Mensal</p>
+      <p class="pat-value green">R$ 17.204</p>
+      <p class="pat-sub">PJ + renda acessória</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">Investimentos XP</p>
+      <p class="pat-value">R$ 348.333</p>
+      <p class="pat-sub">Posição em 27/04/2026</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">Imóvel</p>
+      <p class="pat-value">R$ 400.000</p>
+      <p class="pat-sub">Apartamento — est.</p>
+    </div>
+    <div class="pat-card highlight">
+      <p class="pat-label">Potencial de Aporte</p>
+      <p class="pat-value green">R$ 5.327</p>
+      <p class="pat-sub">por mês (DashPlan)</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">Reserva de Emergência</p>
+      <p class="pat-value amber">R$ ~9.500</p>
+      <p class="pat-sub">Necessária: R$ 50.393</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">Dívidas</p>
+      <p class="pat-value green">Zero</p>
+      <p class="pat-sub">Patrimônio líquido positivo</p>
+    </div>
+  </div>
+
+  <!-- Orçamento -->
+  <div class="budget-block">
+    <p style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; color:var(--text-muted); margin-bottom:20px;">Distribuição do Orçamento Mensal</p>
+    <div class="budget-row">
+      <div>
+        <span class="budget-row-name">Despesas Obrigatórias</span>
+        <div style="margin-top:6px;"><div class="bar-track"><div class="bar-fill bar-blue" style="width:49%"></div></div></div>
+      </div>
+      <div style="text-align:right;">
+        <span class="budget-row-val">R$ 8.399</span>
+        <span class="budget-pct">49%</span>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div>
+        <span class="budget-row-name">Despesas Variáveis</span>
+        <div style="margin-top:6px;"><div class="bar-track"><div class="bar-fill bar-amber" style="width:20%"></div></div></div>
+      </div>
+      <div style="text-align:right;">
+        <span class="budget-row-val">R$ 3.478</span>
+        <span class="budget-pct">20%</span>
+      </div>
+    </div>
+    <div class="budget-row">
+      <div>
+        <span class="budget-row-name">Potencial de Investimento</span>
+        <div style="margin-top:6px;"><div class="bar-track"><div class="bar-fill bar-green" style="width:31%"></div></div></div>
+      </div>
+      <div style="text-align:right;">
+        <span class="budget-row-val" style="color:var(--green)">R$ 5.327</span>
+        <span class="budget-pct">31%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. RESERVA DE EMERGÊNCIA -->
+<div class="section">
+  <p class="section-label">Urgência #1</p>
+  <h2 class="section-title">Reserva de Emergência</h2>
+
+  <div class="reserva-alert">
+    <div class="reserva-icon">⚠️</div>
+    <div class="reserva-content">
+      <h3>Reserva crítica — precisa ser prioridade imediata</h3>
+      <p>Você tem quase R$ 170.000 travados em produtos sem liquidez e apenas ~R$ 9.500 disponíveis para emergências. A reserva ideal para o seu estilo de vida é de R$ 50.393 (6 meses de despesas obrigatórias). Isso precisa ser corrigido antes de qualquer outro movimento.</p>
+      <div class="reserva-nums">
+        <div class="reserva-num-item">
+          <span class="reserva-num-label">Tem hoje</span>
+          <span class="reserva-num-val amber">R$ ~9.500</span>
+        </div>
+        <div class="reserva-num-item">
+          <span class="reserva-num-label">Ideal (6 meses)</span>
+          <span class="reserva-num-val green">R$ 50.393</span>
+        </div>
+        <div class="reserva-num-item">
+          <span class="reserva-num-label">Gap a cobrir</span>
+          <span class="reserva-num-val red">R$ ~40.000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color:var(--text-dim); line-height:1.6;">
+    <strong style="color:var(--text)">Onde alocar:</strong> Tesouro Selic ou CDB de liquidez diária de banco sólido. Nada de COE, fundo fechado ou qualquer produto sem liquidez imediata. A reserva deve dormir quieta e estar disponível em 1 dia útil.
+  </p>
+</div>
+
+<!-- 4. CARTEIRA DE INVESTIMENTOS -->
+<div class="section">
+  <p class="section-label">Diagnóstico de Carteira</p>
+  <h2 class="section-title">Análise dos Seus Investimentos</h2>
+
+  <p style="font-size:13px; color:var(--text-dim); margin-bottom:28px; line-height:1.6;">
+    Patrimônio total na XP: <strong style="color:var(--text); font-family:'Cormorant Garamond',serif; font-size:18px;">R$ 348.333</strong> &nbsp;|&nbsp; Data base: 27/04/2026
+  </p>
+
+  <!-- Alocação -->
+  <div class="alloc-grid">
+    <div class="alloc-card warn">
+      <p class="alloc-name">COE</p>
+      <p class="alloc-pct warn">23,5%</p>
+      <p class="alloc-val">R$ 81.944</p>
+      <p class="alloc-note">6 COEs com complexidade elevada. 2 deles com capital em risco. Acima do razoável para o seu perfil.</p>
+    </div>
+    <div class="alloc-card bad">
+      <p class="alloc-name">Produtos Estruturados (Collar UI)</p>
+      <p class="alloc-pct bad">24,3%</p>
+      <p class="alloc-val">R$ 84.554</p>
+      <p class="alloc-note">BPAC11, SMAL11, GOLD11, EMBJ3 — estruturas que limitam tanto a alta quanto a baixa.</p>
+    </div>
+    <div class="alloc-card ok">
+      <p class="alloc-name">Fundos de Investimento</p>
+      <p class="alloc-pct ok">27,1%</p>
+      <p class="alloc-val">R$ 94.484</p>
+      <p class="alloc-note">Melhor parte da carteira. JHSF Malls com +21% líquido. Alianza e TG Renda a monitorar.</p>
+    </div>
+    <div class="alloc-card ok">
+      <p class="alloc-name">Renda Fixa</p>
+      <p class="alloc-pct ok">25,0%</p>
+      <p class="alloc-val">R$ 87.031</p>
+      <p class="alloc-note">CDB Digimais e Facta em bom ritmo. Atenção ao CRA BRF 2045 com marcação negativa a mercado.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    🚨 <strong>COE + Collar juntos = 47,8% da carteira</strong> (R$ 166.498) em produtos estruturados complexos. Para uma investidora conservadora em transição, esse nível de concentração está muito acima do adequado. Esse é o ponto principal da nossa conversa hoje.
+  </div>
+</div>
+
+<!-- 5. ANÁLISE COE -->
+<div class="section">
+  <p class="section-label">Análise Detalhada</p>
+  <h2 class="section-title">Seus COEs — Um a Um</h2>
+
+  <div class="coe-list">
+
+    <!-- COE 1 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status warn"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP Bolsa Americana — Taxa Fixa 63% ou Alta Ilimitada</p>
+            <span class="coe-badge badge-warn">⚠ Razoável</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 21.000</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val amber">R$ 22.480</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val amber">+7,0%</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Set / 2030</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val green">Protegido</span>
+            </div>
+          </div>
+          <div class="coe-alert amber-alert">
+            O documento oficial (DIE) declara custo de oportunidade de 13,53% a.a. — isso significa que o CDI no mesmo prazo rende mais do que a taxa fixa de 10,40% a.a. garantida. Se o S&P 500 não subir mais de 63% até 2030, você teria ganhado mais no CDI simples.
+          </div>
+          <div class="coe-veredicto veredicto-warn">
+            ⚠ Aguardar vencimento. Capital protegido compensa a espera.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COE 2 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status ok"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP Bolsa Americana — Taxa Fixa 68% ou Alta Ilimitada</p>
+            <span class="coe-badge badge-ok">✓ Melhor da carteira</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 5.000</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val green">R$ 5.924</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val green">+18,5%</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Dez / 2029</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val green">Protegido</span>
+            </div>
+          </div>
+          <div class="coe-veredicto veredicto-ok">
+            ✓ Aguardar vencimento. Desempenho acima da taxa fixa — S&P500 performou bem no período.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COE 3 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status bad"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP Eletrobras 2030 RF Pré — Cupom Trimestral</p>
+            <span class="coe-badge badge-bad">🚨 Atenção Urgente</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 20.000</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val red">R$ 20.250</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val red">+1,3%</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Jun / 2030</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val red">EM RISCO</span>
+            </div>
+          </div>
+          <div class="coe-alert">
+            ⚠ Este COE NÃO tem capital protegido. Funciona como um seguro de crédito da Eletrobras: se a empresa não pagar seus bonds internacionais, você pode perder todo o capital investido. Deveria pagar cupons trimestrais de ~14,78% a.a. — o retorno de +1,3% apurado não bate com os cupons prometidos. Precisamos verificar se os cupons estão sendo creditados corretamente na sua conta.
+          </div>
+          <div class="coe-veredicto veredicto-bad">
+            🚨 Verificar cupons + avaliar custo de saída antecipada. Não adequado para o seu perfil.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COE 4 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status bad"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP MAXP — Alta Alavancada 5y</p>
+            <span class="coe-badge badge-bad">🚨 Inadequado ao Perfil</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 10.600</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val red">R$ 10.600</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val red">0%</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Fev / 2031</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val green">Protegido</span>
+            </div>
+          </div>
+          <div class="coe-alert">
+            Ativo subjacente: MQMAXP6 — índice quantitativo proprietário da Merqube, não é S&P500. Participação de 700% na alta do índice, mas o índice não se moveu desde jan/2026. O DIE declara custo de oportunidade de 13,57% a.a. — o CDI está ganhando desse produto enquanto ele fica parado. Produto voltado para especuladores, não para perfil conservador.
+          </div>
+          <div class="coe-veredicto veredicto-bad">
+            🚨 Avaliar saída antecipada. Capital protegido mas custo de oportunidade alto e produto inadequado.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COE 5 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status bad"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP Minerva 2033 RF IPCA — Bullet</p>
+            <span class="coe-badge badge-bad">🚨 Capital em Risco — Rating Especulativo</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 22.911</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val amber">R$ 12.690</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val amber">+26,9%*</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Set / 2033</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val red">EM RISCO</span>
+            </div>
+          </div>
+          <div class="coe-alert">
+            ⚠ Capital 100% em risco — exposição ao bond internacional da Minerva (rating BB pela Fitch = grau especulativo). Se a Minerva não honrar a dívida, você pode perder o investimento. O retorno de +26,9% reflete principalmente a correção pelo IPCA acumulado, não é lucro real ainda. Vence em 2033 — 7 anos de exposição a uma empresa de frigoríficos com dívida em dólar. *Posição a mercado diverge do aplicado.
+          </div>
+          <div class="coe-veredicto veredicto-bad">
+            🚨 Avaliar custo de saída. Rating especulativo + capital em risco + cliente conservadora = inconsistência grave.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COE 6 -->
+    <div class="coe-card">
+      <div class="coe-header">
+        <div class="coe-status bad"></div>
+        <div class="coe-body">
+          <div class="coe-top">
+            <p class="coe-name">XP Cripto — Alta Limitada ou Cupom</p>
+            <span class="coe-badge badge-bad">🚨 Inadequado ao Perfil</span>
+          </div>
+          <div class="coe-meta">
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Aplicado</span>
+              <span class="coe-meta-val">R$ 10.000</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Posição atual</span>
+              <span class="coe-meta-val red">R$ 10.000</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Retorno</span>
+              <span class="coe-meta-val red">0%</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Vencimento</span>
+              <span class="coe-meta-val">Ago / 2027</span>
+            </div>
+            <div class="coe-meta-item">
+              <span class="coe-meta-label">Capital</span>
+              <span class="coe-meta-val green">Protegido</span>
+            </div>
+          </div>
+          <div class="coe-alert">
+            Exposição ao HASH11 (criptoativos) com alta limitada a 100% — se o cripto subir 150%, você recebe apenas 50% de cupom. Rentabilidade zero desde jul/2025. O DIE aponta custo de oportunidade de 14,91% a.a. — o maior de todos os seus COEs. Vence em ago/2027, faltam ~15 meses.
+          </div>
+          <div class="coe-veredicto veredicto-bad">
+            🚨 Aguardar vencimento (15 meses). Após vencer, não renovar produto similar.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .coe-list -->
+</div>
+
+<!-- 6. RENDA FIXA -->
+<div class="section">
+  <p class="section-label">Renda Fixa</p>
+  <h2 class="section-title">Produtos de Renda Fixa</h2>
+
+  <div style="overflow-x:auto;">
+  <table class="rf-table">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Taxa</th>
+        <th>Vencimento</th>
+        <th>Posição</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>CDB Digimais</strong></td>
+        <td>109% CDI</td>
+        <td>Set / 2030</td>
+        <td style="color:var(--green)">R$ 27.367</td>
+        <td><span class="tag tag-ok">✓ Bom</span></td>
+      </tr>
+      <tr>
+        <td><strong>LCA BNDES</strong></td>
+        <td>81,5% CDI<br><span style="font-size:11px; color:var(--text-muted)">isento IR</span></td>
+        <td>Dez / 2026</td>
+        <td>R$ 20.894</td>
+        <td><span class="tag tag-ok">✓ Ok</span></td>
+      </tr>
+      <tr>
+        <td><strong>LCA Banco BV</strong></td>
+        <td>81,5% CDI<br><span style="font-size:11px; color:var(--text-muted)">isento IR</span></td>
+        <td>Mar / 2028</td>
+        <td>R$ 612</td>
+        <td><span class="tag tag-ok">Neutro</span></td>
+      </tr>
+      <tr>
+        <td>
+          <strong>CRA BRF</strong>
+          <br><span style="font-size:11px; color:var(--text-muted)">⚠ Atenção: marcação negativa</span>
+        </td>
+        <td>IPCA + 9,08%</td>
+        <td>Abr / 2045</td>
+        <td style="color:var(--red)">R$ 19.658<br><span style="font-size:11px">(aplicado R$ 22.911)</span></td>
+        <td><span class="tag tag-warn">⚠ Monitorar</span></td>
+      </tr>
+      <tr>
+        <td><strong>CDB Facta Pré</strong></td>
+        <td>15% a.a.</td>
+        <td>Nov / 2026</td>
+        <td style="color:var(--green)">R$ 18.500</td>
+        <td><span class="tag tag-ok">✓ Bom</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="coe-alert amber-alert" style="margin-top:16px;">
+    ⚠ CRA BRF (2045): a posição a mercado está R$ 3.253 abaixo do valor aplicado. Se precisar sair antes do vencimento, há perda. Além disso, travar IPCA+9% por 19 anos com vencimento em 2045 é um prazo longo para quem quer independência financeira aos 50. Precisamos avaliar se faz sentido manter.
+  </div>
+</div>
+
+<!-- 7. FUNDOS -->
+<div class="section">
+  <p class="section-label">Fundos de Investimento</p>
+  <h2 class="section-title">O Melhor da Carteira</h2>
+
+  <div class="patrimony-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));">
+    <div class="pat-card" style="border-color:rgba(61,220,132,0.2);">
+      <p class="pat-label">JHSF Capital Malls FII RL</p>
+      <p class="pat-value green">+21,06%</p>
+      <p class="pat-sub">Rentabilidade líquida | FII de Shopping</p>
+      <p style="font-size:11px; margin-top:8px; color:var(--text-muted)">Aplicado R$ 22.700 → Posição R$ 26.573</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">Alianza Crédito Renda Mais FII RL</p>
+      <p class="pat-value amber">+3,15%</p>
+      <p class="pat-sub">Rentabilidade líquida | Inflação</p>
+      <p style="font-size:11px; margin-top:8px; color:var(--text-muted)">Aplicado R$ 33.500 → Posição R$ 34.105</p>
+    </div>
+    <div class="pat-card">
+      <p class="pat-label">TG Renda Imobiliária Feeder Pré FII RL</p>
+      <p class="pat-value amber">+2,91%</p>
+      <p class="pat-sub">Rentabilidade líquida | Prefixado</p>
+      <p style="font-size:11px; margin-top:8px; color:var(--text-muted)">Aplicado R$ 33.500 → Posição R$ 33.807</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    ✓ Os fundos são a parte mais saudável da carteira. JHSF Malls entregou +21% líquido — excelente performance. Alianza e TG estão com retornos mais modestos e vamos monitorar se estão dentro do benchmark esperado.
+  </div>
+</div>
+
+<!-- 8. PROTEÇÃO -->
+<div class="section">
+  <p class="section-label">Proteção Patrimonial</p>
+  <h2 class="section-title">Sua Blindagem Atual</h2>
+
+  <div class="seguro-grid">
+    <div class="seguro-card ok">
+      <p class="seguro-type">Seguro de Vida</p>
+      <p class="seguro-status ok">✓ Existe</p>
+      <p class="seguro-note">~R$ 515/mês. Beneficiárias: mãe (Maria Aparecida) e prima (Caléria de Jesus). <strong style="color:var(--green)">Otimizações de cobertura já alinhadas</strong> — novo seguro em implementação com melhores coberturas e custo otimizado.</p>
+    </div>
+    <div class="seguro-card ok">
+      <p class="seguro-type">Seguro Residencial</p>
+      <p class="seguro-status ok">✓ Em andamento</p>
+      <p class="seguro-note">Apartamento de ~R$ 400.000. <strong style="color:var(--green)">Em andamento</strong> — proteção sendo estruturada.</p>
+    </div>
+    <div class="seguro-card ok">
+      <p class="seguro-type">Plano de Saúde</p>
+      <p class="seguro-status ok">✓ Ativo</p>
+      <p class="seguro-note">R$ 400–500/mês com coparticipação. Custeado parcialmente pela empresa. Existe espaço para avaliar planos PJ com melhores condições de cobertura e custo.</p>
+    </div>
+    <div class="seguro-card bad">
+      <p class="seguro-type">Previdência Privada</p>
+      <p class="seguro-status bad">✗ Não identificada</p>
+      <p class="seguro-note">Não há PGBL ou VGBL na carteira. Para PJ com renda anual de ~R$ 206k, vale avaliar se faz sentido estruturar uma previdência com benefício fiscal.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 9. PROJETOS DE VIDA -->
+<div class="section">
+  <p class="section-label">Projetos de Vida</p>
+  <h2 class="section-title">Seus Sonhos em Números</h2>
+
+  <div class="projetos-grid">
+    <div class="projeto-card">
+      <span class="projeto-emoji">🗻</span>
+      <p class="projeto-nome">Chapada dos Veadeiros</p>
+      <p class="projeto-data">18 a 21 de Setembro / 2026</p>
+      <p class="projeto-valor">R$ 2.500</p>
+    </div>
+    <div class="projeto-card">
+      <span class="projeto-emoji">🌴</span>
+      <p class="projeto-nome">Punta Cana</p>
+      <p class="projeto-data">12 de Novembro / 2026</p>
+      <p class="projeto-valor">R$ 5.000 <span style="font-size:11px; color:var(--text-muted)">(levar)</span></p>
+    </div>
+    <div class="projeto-card">
+      <span class="projeto-emoji">💻</span>
+      <p class="projeto-nome">Computador novo</p>
+      <p class="projeto-data">Novembro / 2026 (Black Friday)</p>
+      <p class="projeto-valor">R$ 5.000</p>
+    </div>
+    <div class="projeto-card">
+      <span class="projeto-emoji">✈️</span>
+      <p class="projeto-nome">Europa</p>
+      <p class="projeto-data">Maio / 2027 — Lisboa, Madrid, Paris</p>
+      <p class="projeto-valor">R$ 30.000</p>
+    </div>
+    <div class="projeto-card">
+      <span class="projeto-emoji">🎓</span>
+      <p class="projeto-nome">MBA + Cursos</p>
+      <p class="projeto-data">Até Abril / 2027</p>
+      <p class="projeto-valor">R$ 1.100/mês</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px;">
+    💡 Os R$ 1.100/mês dos cursos que <strong>encerram em abril/2027</strong> se tornam aporte extra. São R$ 13.200 a mais por ano disponíveis para os seus projetos e investimentos a partir de maio/2027.
+  </div>
+</div>
+
+<!-- 10. PLANO CFP PRÓXIMOS PASSOS -->
+<div class="section">
+  <p class="section-label">Metodologia CFP</p>
+  <h2 class="section-title">Objetivo → Estratégia → Produto</h2>
+
+  <div class="cfp-pillars">
+    <div class="pillar-card">
+      <p class="pillar-num">01</p>
+      <p class="pillar-title">Reserva de Emergência</p>
+      <p class="pillar-desc">Prioridade imediata: construir R$ 50.393 em liquidez diária. Tesouro Selic ou CDB D+0. Prazo sugerido: 6 a 8 meses de aportes específicos para essa finalidade.</p>
+    </div>
+    <div class="pillar-card">
+      <p class="pillar-num">02</p>
+      <p class="pillar-title">Proteção</p>
+      <p class="pillar-desc">Seguro de vida com novas coberturas otimizadas — já alinhado e em implementação. Seguro residencial sendo estruturado. Avaliar plano de saúde PJ.</p>
+    </div>
+    <div class="pillar-card">
+      <p class="pillar-num">03</p>
+      <p class="pillar-title">Redução de Complexidade</p>
+      <p class="pillar-desc">À medida que os COEs vencem, não renovar produtos complexos. Redirecionar para renda fixa simples + fundos alinhados ao objetivo de independência financeira.</p>
+    </div>
+    <div class="pillar-card">
+      <p class="pillar-num">04</p>
+      <p class="pillar-title">Aporte Sistemático</p>
+      <p class="pillar-desc">R$ 5.300/mês de forma consistente. Estratégia: renda fixa pós-fixada (base), exposição moderada a renda variável (crescimento), proteção inflacionária (IPCA+). Em maio/2027, os R$ 1.100/mês dos cursos se incorporam ao aporte.</p>
+    </div>
+    <div class="pillar-card">
+      <p class="pillar-num">05</p>
+      <p class="pillar-title">Revisão Anual</p>
+      <p class="pillar-desc">Rebalancear carteira a cada 12 meses. Avaliar evolução do patrimônio vs. meta da independência. Ajustar conforme mudanças de renda ou objetivos.</p>
+    </div>
+    <div class="pillar-card">
+      <p class="pillar-num">06</p>
+      <p class="pillar-title">Planejamento Tributário</p>
+      <p class="pillar-desc">Renda anual de ~R$ 206k abre oportunidades de otimização. Revisar modelo de declaração de IR e avaliar PGBL se houver benefício real.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 11. CHECKLIST VANESSA -->
+<div class="section">
+  <p class="section-label">Seus Próximos Passos</p>
+  <h2 class="section-title">O Que Fazer Até a Próxima Reunião</h2>
+
+  <ul class="checklist">
+    <li>
+      <div class="check-box"></div>
+      <div><strong>Verificar os cupons do COE Eletrobras</strong> — Entrar na XP e checar se os pagamentos trimestrais de ~14,78% a.a. estão sendo creditados na conta desde setembro de 2025.</div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div><strong>Acompanhar o DashPlan em maio</strong> — Classificar os lançamentos pendentes e validar se as médias de gasto do orçamento estão corretas.</div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div><strong>Confirmar o IPTU do apartamento</strong> — Verificar o valor anual para completarmos a parte de impostos no DashPlan.</div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div><strong>Enviar declaração de IR</strong> — Localizar o arquivo da última declaração e enviar para análise de otimização tributária.</div>
+    </li>
+    <li>
+      <div class="check-box"></div>
+      <div><strong>Guardar primeiro aporte da reserva de emergência</strong> — Separar algo entre R$ 1.000 e R$ 3.000 este mês e mover para uma conta de liquidez diária com propósito exclusivo de reserva.</div>
+    </li>
+  </ul>
+</div>
+
+<!-- 12. CHECKLIST MATHEUS -->
+<div class="section">
+  <p class="section-label">Compromissos do Planejador</p>
+  <h2 class="section-title">O Que Farei por Você</h2>
+
+  <ul class="checklist">
+    <li>
+      <div class="check-box" style="border-color:var(--green); background:rgba(61,220,132,0.05)"></div>
+      <div><strong>Seguro de vida — em andamento ✓</strong> — Otimizações de cobertura já alinhadas. Novo produto em processo de implementação com melhor relação cobertura/custo.</div>
+    </li>
+    <li>
+      <div class="check-box" style="border-color:var(--green); background:rgba(61,220,132,0.05)"></div>
+      <div><strong>Seguro residencial — em andamento ✓</strong> — Proteção para o apartamento de ~R$ 400k sendo estruturada.</div>
+    </li>
+    <li>
+      <div class="check-box" style="border-color:var(--green); background:rgba(61,220,132,0.05)"></div>
+      <div><strong>Verificar custo de saída dos COEs problemáticos</strong> — Especialmente MAXP (fev/2031) e Minerva (set/2033). Precisamos saber se vale sair antes ou aguardar.</div>
+    </li>
+    <li>
+      <div class="check-box" style="border-color:var(--green); background:rgba(61,220,132,0.05)"></div>
+      <div><strong>Planejar viagem Europa 2027</strong> — Montar planilha de custo estimado, identificar janelas de IOF zero para remessa e estratégia de milhas (você tem ~29.000 pts entre LATAM e Azul).</div>
+    </li>
+    <li>
+      <div class="check-box" style="border-color:var(--green); background:rgba(61,220,132,0.05)"></div>
+      <div><strong>Preparar nova proposta de alocação</strong> — Carteira mais simples, alinhada ao objetivo de independência financeira aos 50 anos, com menos produtos estruturados.</div>
+    </li>
+
+  </ul>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <strong style="color:var(--green)">Grão</strong> | Grupo Primo
+    <div style="font-size:13px; margin-top:4px; color:var(--text-muted)">Matheus Melo · Planejador Financeiro Pessoal</div>
+  </div>
+  <div class="footer-info">
+    <div>Maio de 2026</div>
+    <div style="margin-top:4px;">Este material é confidencial e destinado exclusivamente à Vanessa Rosa.</div>
+    <div style="margin-top:4px; color:var(--border)">Elaborado com metodologia próxima ao CFP®</div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
